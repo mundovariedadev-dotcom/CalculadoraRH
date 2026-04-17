@@ -2,7 +2,7 @@ let dias = [];
 
 function obterJornadaNormal(turno) {
     if (turno === 'primeiro') {
-        return 8.80; // Primeiro turno: 40h/semana = 8,80h/dia
+        return 8.80; // Primeiro turno: jornada diária de 8h48 (08:00-12:00 e 13:12-18:00)
     } else {
         return 7.92; // Segundo turno: 39,60h/semana = 7,92h/dia
     }
@@ -134,6 +134,8 @@ function calcularHorasExtras(horasTrabalhadas, salarioHora, turno, feriado) {
 }
 
 function formatarData(dataString) {
-    const data = new Date(dataString);
+    // Evita o deslocamento de fuso horário ao formatar datas de input type="date"
+    const [ano, mes, dia] = dataString.split('-').map(Number);
+    const data = new Date(ano, mes - 1, dia);
     return data.toLocaleDateString('pt-BR');
 }

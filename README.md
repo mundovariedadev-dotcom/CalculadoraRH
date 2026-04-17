@@ -9,7 +9,7 @@ Uma calculadora para calcular horas trabalhadas e separar as horas extras, acumu
 - Mostra tabela com detalhes por dia
 - Calcula totais: horas normais, horas extras, valores
 - Regras de cálculo:
-  - **1º Turno**: Jornada de 40 horas/semana = 8,80h/dia
+  - **1º Turno**: Jornada de 40 horas/semana = 8,80h/dia (08:00-12:00 e 13:12-18:00)
   - **2º Turno**: Jornada de 39,60 horas/semana = 7,92h/dia
   - Horas extras sempre 50% a mais, independente da quantidade
   - Em feriados: paga 100% adicional pelas horas trabalhadas
