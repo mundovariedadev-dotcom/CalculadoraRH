@@ -15,7 +15,7 @@ Uma calculadora para calcular horas trabalhadas e separar as horas extras, acumu
   - Horas extras sempre 50% a mais, independente da quantidade
   - Em feriados: paga 100% adicional pelas horas trabalhadas
   - Jornada mensal: 220 horas
-- Interface web responsiva e fácil de usar
+- Interface web responsiva e fácil de usar, compatível com desktop, notebook e celular
 
 ## Como usar
 
