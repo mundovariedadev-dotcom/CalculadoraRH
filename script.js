@@ -40,6 +40,8 @@ document.getElementById('add-day-form').addEventListener('submit', function(even
     document.getElementById('feriado').checked = false;
 });
 
+document.getElementById('export-btn').addEventListener('click', exportarTabelaCSV);
+
 function atualizarTabela() {
     const tbody = document.getElementById('dias-body');
     tbody.innerHTML = '';
@@ -94,6 +96,72 @@ function removerDia(index) {
     dias.splice(index, 1);
     atualizarTabela();
     atualizarTotais();
+}
+
+function exportarTabelaCSV() {
+    if (dias.length === 0) {
+        alert('Adicione ao menos um dia antes de exportar.');
+        return;
+    }
+
+    const delimiter = ';';
+    const headers = [
+        'Data',
+        'Horas Trabalhadas',
+        'Turno',
+        'Feriado',
+        'Horas Normais',
+        'Horas Extras',
+        'Valor Extras (R$)',
+        'Total Receber (R$)'
+    ];
+
+    const rows = dias.map(dia => {
+        const resultado = calcularHorasExtras(dia.horasTrabalhadas, dia.salarioHora, dia.turno, dia.feriado);
+        return [
+            formatarData(dia.data),
+            dia.horasTrabalhadas.toFixed(2),
+            dia.turno === 'primeiro' ? '1º' : '2º',
+            dia.feriado ? 'Sim' : 'Não',
+            resultado.horasNormais.toFixed(2),
+            resultado.horasExtras.toFixed(2),
+            resultado.valorExtras.toFixed(2),
+            resultado.totalReceber.toFixed(2)
+        ].join(delimiter);
+    });
+
+    let totalHorasNormais = 0;
+    let totalHorasExtras = 0;
+    let totalValorExtras = 0;
+    let totalReceber = 0;
+
+    dias.forEach(dia => {
+        const resultado = calcularHorasExtras(dia.horasTrabalhadas, dia.salarioHora, dia.turno, dia.feriado);
+        totalHorasNormais += resultado.horasNormais;
+        totalHorasExtras += resultado.horasExtras;
+        totalValorExtras += resultado.valorExtras;
+        totalReceber += resultado.totalReceber;
+    });
+
+    const totalRows = [
+        '',
+        `Total horas normais:${delimiter}${totalHorasNormais.toFixed(2)}`,
+        '',
+        `Total horas extras:${delimiter}${totalHorasExtras.toFixed(2)}`,
+        `Total valor extras:${delimiter}R$ ${totalValorExtras.toFixed(2)}`,
+        `Total a receber:${delimiter}R$ ${totalReceber.toFixed(2)}`
+    ];
+
+    const csvContent = [headers.join(delimiter), ...rows, '', ...totalRows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'tabela-horas-extras.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 function calcularHorasExtras(horasTrabalhadas, salarioHora, turno, feriado) {

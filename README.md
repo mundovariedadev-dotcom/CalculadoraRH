@@ -8,6 +8,7 @@ Uma calculadora para calcular horas trabalhadas e separar as horas extras, acumu
 - Calcula automaticamente horas normais conforme o turno e horas extras
 - Mostra tabela com detalhes por dia
 - Calcula totais: horas normais, horas extras, valores
+- Permite exportar a tabela e os totais como arquivo CSV
 - Regras de cálculo:
   - **1º Turno**: Jornada de 40 horas/semana = 8,80h/dia (08:00-12:00 e 13:12-18:00)
   - **2º Turno**: Jornada de 39,60 horas/semana = 7,92h/dia
@@ -24,6 +25,7 @@ Uma calculadora para calcular horas trabalhadas e separar as horas extras, acumu
 4. Adicione dias: selecione a data, digite as horas trabalhadas, marque se é feriado, clique em "Adicionar Dia".
 5. A tabela será atualizada automaticamente com os cálculos por dia.
 6. Veja os totais no final.
+7. Clique em "Baixar tabela com totais" para salvar os dados em CSV.
 
 ## Arquivos
 
