@@ -1,0 +1,2 @@
+# requirements.txt
+# Nenhuma dependência externa necessária para este projeto.

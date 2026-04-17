@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Horas Extras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Horas Extras</h1>
+        <p>Adicione os dias trabalhados e calcule o total de horas normais e extras.</p>
+
+        <div class="input-group">
+            <label for="salario-hora">Salário por hora (R$):</label>
+            <input type="number" id="salario-hora" min="0" step="0.01" required>
+        </div>
+
+        <div class="input-group">
+            <label for="turno">Turno:</label>
+            <select id="turno" required>
+                <option value="primeiro">Primeiro Turno (40h/semana)</option>
+                <option value="segundo">Segundo Turno (39,60h/semana)</option>
+            </select>
+        </div>
+
+        <form id="add-day-form">
+            <div class="input-group">
+                <label for="data">Data:</label>
+                <input type="date" id="data" required>
+            </div>
+
+            <div class="input-group">
+                <label for="horas-trabalhadas">Horas trabalhadas:</label>
+                <input type="number" id="horas-trabalhadas" min="0" step="0.01" required>
+            </div>
+
+            <div class="input-group">
+                <label>
+                    <input type="checkbox" id="feriado"> É feriado?
+                </label>
+            </div>
+
+            <button type="submit">Adicionar Dia</button>
+        </form>
+
+        <table id="dias-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horas Trabalhadas</th>
+                    <th>Turno</th>
+                    <th>Feriado</th>
+                    <th>Horas Normais</th>
+                    <th>Horas Extras</th>
+                    <th>Valor Extras (R$)</th>
+                    <th>Total Receber (R$)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="dias-body">
+            </tbody>
+        </table>
+
+        <div id="totais" class="totais" style="display: none;">
+            <h2>Totais</h2>
+            <p id="total-horas-normais"></p>
+            <p id="total-horas-extras"></p>
+            <p id="total-valor-extras"></p>
+            <p id="total-receber"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
